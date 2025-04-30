@@ -1,6 +1,6 @@
 // main.cpp
 #include <iostream>
-#include "GraphManager.h"
+#include "GraphManager.cpp"
 
 int main() {
     GraphManager graph;

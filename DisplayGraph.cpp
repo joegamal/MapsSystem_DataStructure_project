@@ -17,19 +17,23 @@ public:
      */
     void displayGraph() {
         // Implementation would depend on how the graph data is stored
-        // This is a placeholder implementation
+        //// This is a placeholder implementation
+        //
+        //cout << "City Connections:\n";
+        //for (const auto& city : cities) {
+        //    cout << "- " << city << " -> ";
+        //    // Here you would display connections for each city with distances
+        //    // For example:
+        //    // for (const auto& connection : getConnections(city)) {
+        //    //     cout << connection.city << " (" << connection.distance << "), ";
+        //    // }
+        //    cout << "\n";
+        //}
+
         
-        cout << "City Connections:\n";
-        for (const auto& city : cities) {
-            cout << "- " << city << " -> ";
-            // Here you would display connections for each city with distances
-            // For example:
-            // for (const auto& connection : getConnections(city)) {
-            //     cout << connection.city << " (" << connection.distance << "), ";
-            // }
-            cout << "\n";
-        }
+
     }
+
 
     /**
      * Displays the shortest path between cities and the total distance.
