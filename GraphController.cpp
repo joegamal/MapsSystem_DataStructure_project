@@ -1,4 +1,4 @@
-﻿#include "GraphManager.h"
+﻿#include "GraphController.h"
 #include <iostream>
 #include <vector>
 using namespace std;
