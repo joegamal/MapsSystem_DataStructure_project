@@ -2,6 +2,7 @@
 #include "GraphManager.cpp"
 #include "UserLogin.cpp"
 #include "DisplayGraph.cpp"
+#include "GraphTraverse.cpp"
 
 using namespace std;
 
@@ -59,6 +60,7 @@ void showAuthMenu(UserLogin& userSystem) {
 
 void showMainMenu(GraphManager& graph, UserLogin& userSystem) {
     GraphDisplay display(graph);
+    GraphTraverse TG(graph);
     bool running = true;
     
     while (running) {
@@ -71,6 +73,7 @@ void showMainMenu(GraphManager& graph, UserLogin& userSystem) {
         cout << "del - Delete city\n";
         cout << "addE - Add edge\n";
         cout << "delE - Delete edge\n";
+        cout<<"TG - Traverse current graph\n";
         cout << "logout - Log out\n";
         cout << "ex - Exit\n";
         cout << "Enter your choice: ";
@@ -94,6 +97,11 @@ void showMainMenu(GraphManager& graph, UserLogin& userSystem) {
             cin >> city;
             graph.DeleteCity(city);
             cout << "City deleted if it existed.\n";
+        }
+        else if(ans =="TG"){
+            cout<<"Enter the city you want to traverse: ";
+            string city;cin>>city;
+            TG.BFS(city);
         }
         else if (ans == "delE") {
             cout << "Enter city names to disconnect (format: city1 city2): ";
