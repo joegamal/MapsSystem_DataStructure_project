@@ -1,44 +1,14 @@
 {
-    "Alexandria": [
+    "alex": [
         {
             "cost": 200,
-            "destination": "Cairo"
-        },
-        {
-            "cost": 300,
-            "destination": "Marsa Matruh"
+            "destination": "cairo"
         }
     ],
-    "Cairo": [
+    "cairo": [
         {
             "cost": 200,
-            "destination": "Alexandria"
-        },
-        {
-            "cost": 50,
-            "destination": "Giza"
-        }
-    ],
-    "Fayoum": [
-        {
-            "cost": 100,
-            "destination": "Giza"
-        }
-    ],
-    "Giza": [
-        {
-            "cost": 50,
-            "destination": "Cairo"
-        },
-        {
-            "cost": 100,
-            "destination": "Fayoum"
-        }
-    ],
-    "Marsa Matruh": [
-        {
-            "cost": 300,
-            "destination": "Alexandria"
+            "destination": "alex"
         }
     ]
 }

@@ -15,6 +15,7 @@ void GraphManager::AddCity(const string& cityName) {
     if (it == adjacencyList.end()) {
         adjacencyList[cityName] = list<pair<string, int>>();
     }
+    saveToJson("cities.json");
 }
 
 void GraphManager::loadFromJson(const string& filename){
@@ -79,6 +80,8 @@ void GraphManager::AddEdge(const string& city1, const string& city2, int distanc
     // Add the edge in both directions (undirected graph)
     adjacencyList[city1].push_back({ city2, distance });
     adjacencyList[city2].push_back({ city1, distance });
+    saveToJson("cities.json");
+
 }
 
 void GraphManager::DeleteEdge(const string& city1, const string& city2) {
@@ -100,6 +103,8 @@ void GraphManager::DeleteEdge(const string& city1, const string& city2) {
             break;
         }
     }
+    saveToJson("cities.json");
+
 }
 
 void GraphManager::DeleteCity(const string& cityName) {
@@ -122,6 +127,8 @@ void GraphManager::DeleteCity(const string& cityName) {
 
     // Delete the city itself
     adjacencyList.erase(cityName);
+    saveToJson("cities.json");
+
 }
 
 

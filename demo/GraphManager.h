@@ -3,6 +3,12 @@
 #include <list>
 #include <utility>
 
+
+
+#ifndef GRAPHMANAGER_H
+#define GRAPHMANAGER_H
+
+
 using namespace std;
 
 class GraphManager { 
@@ -31,3 +37,4 @@ private:
 
 
 
+#endif
