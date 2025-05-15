@@ -1,7 +1,3 @@
-#ifndef GRAPHMANAGER_H
-#define GRAPHMANAGER_H
-
-
 #include <string>
 #include <unordered_map>
 #include <list>
@@ -22,14 +18,16 @@ const unordered_map<string, list<pair<string, int>>>& getAdjacencyList() const {
 
     void DeleteEdge(const string& city1, const string& city2);
     void DeleteCity(const string& cityName);
-
+    GraphManager();
+    ~GraphManager();
     void DisplayGraph() const;
+    void loadFromJson(const string& filename);
+    void saveToJson(const string& filename) const;
 
 private:
 
     unordered_map<string, list<pair<string, int>>> adjacencyList;
 };
 
-#endif
 
 
