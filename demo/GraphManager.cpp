@@ -3,6 +3,8 @@
 #include <vector>
 #include <fstream>
 #include "json.hpp"
+#include <climits>
+#include <queue>
 
 using json = nlohmann::json;
 using namespace std;
@@ -131,11 +133,56 @@ void GraphManager::DeleteCity(const string& cityName) {
 
 }
 
+void GraphManager::PrintSolution(string start,string end) {
+    if (dist.find(end) == dist.end() || dist.at(end) == INT_MAX) {
+        cout << "No path from " << start << " to " << end << " exists.\n";
+        return;
+    }
 
+    // Reconstruct path
+    vector<string> path;
+    for (string at = end; at != ""; at = prev.count(at) ? prev.at(at) : "") {
+        path.push_back(at);
+    }
+    reverse(path.begin(), path.end());
 
+    cout << "Shortest distance from " << start << " to " << end << " is " << dist.at(end) << " km\n";
+    cout << "Path: ";
+    for (size_t i = 0; i < path.size(); ++i) {
+        cout << path[i];
+        if (i + 1 < path.size()) cout << " -> ";
+    }
+    cout << "\n";
+}
 
+void GraphManager::dijkstra(string start,string end){
+    
 
+    for (const auto& node : adjacencyList) {
+        dist[node.first] = INT_MAX;
+    }
+    dist[start] = 0;
 
+    priority_queue<pair<int, string>, vector<pair<int, string>>, greater<>> pq;
+    pq.push({0, start});
+
+    while (!pq.empty()) {
+        auto [currDist, currNode] = pq.top();
+        pq.pop();
+
+        if (currDist > dist[currNode]) continue;
+
+        for (const auto& [neighbor, weight] : adjacencyList.at(currNode)) {
+            int newDist = currDist + weight;
+            if (newDist < dist[neighbor]) {
+                dist[neighbor] = newDist;
+                prev[neighbor] = currNode;
+                pq.push({newDist, neighbor});
+            }
+        }
+    }
+    PrintSolution(start,end);
+}
 
 
 

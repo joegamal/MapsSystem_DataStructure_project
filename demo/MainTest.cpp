@@ -73,7 +73,8 @@ void showMainMenu(GraphManager& graph, UserLogin& userSystem) {
         cout << "del - Delete city\n";
         cout << "addE - Add edge\n";
         cout << "delE - Delete edge\n";
-        cout<<"TG - Traverse current graph\n";
+        cout << "dks - for dijkstra short path calculation\n";
+        cout << "TG - Traverse current graph\n";
         cout << "logout - Log out\n";
         cout << "ex - Exit\n";
         cout << "Enter your choice: ";
@@ -97,6 +98,23 @@ void showMainMenu(GraphManager& graph, UserLogin& userSystem) {
             cin >> city;
             graph.DeleteCity(city);
             cout << "City deleted if it existed.\n";
+        }
+        else if(ans == "dks"){
+
+            cout << "enter your current loaction: ";
+            string city;
+            cin >> city;
+
+
+            
+            cout << "enter your destination : ";
+            string city2;
+            cin >> city2;
+            cout << endl;
+
+
+            graph.dijkstra(city, city2);
+
         }
         else if(ans =="TG"){
             cout<<"Enter the city you want to traverse: ";
