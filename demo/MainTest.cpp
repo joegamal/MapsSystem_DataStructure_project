@@ -139,82 +139,83 @@ void showMainMenu(GraphManager& graph,GraphController negGraph, UserLogin& userS
 
 
 
-        }else{}
-        destructChoice(ans);
-        cout << "Options:\n";
-        cout << "add - Add city connection\n";
-        cout << "dis - Display graph\n";
-        cout << "del - Delete city\n";
-        cout << "addE - Add edge\n";
-        cout << "delE - Delete edge\n";
-        cout << "dks - for dijkstra short path calculation\n";
-        cout << "TG - Traverse current graph\n";
-        cout << "logout - Log out\n";
-        cout << "ex - Exit\n";
-        cout << "Enter your choice: ";
-        
-        cin >> ans;
-        
-        if (ans == "add" || ans == "addE") {
-            cout << "Enter city names and distance (format: city1 city2 distance): ";
-            string city1, city2;
-            int distance;
-            cin >> city1 >> city2 >> distance;
-            graph.AddEdge(city1, city2, distance);
-            cout << "Connection added successfully!\n";
-        }
-        else if (ans == "dis") {
-            display.displayGraph();
-        }
-        else if (ans == "del") {
-            cout << "Enter city name to delete: ";
-            string city;
-            cin >> city;
-            graph.DeleteCity(city);
-            cout << "City deleted if it existed.\n";
-        }
-        else if(ans == "dks"){
-
-            cout << "enter your current loaction: ";
-            string city;
-            cin >> city;
-
-
+        }else{
+            destructChoice(ans);
+            cout << "Options:\n";
+            cout << "add - Add city connection\n";
+            cout << "dis - Display graph\n";
+            cout << "del - Delete city\n";
+            cout << "addE - Add edge\n";
+            cout << "delE - Delete edge\n";
+            cout << "dks - for dijkstra short path calculation\n";
+            cout << "TG - Traverse current graph\n";
+            cout << "logout - Log out\n";
+            cout << "ex - Exit\n";
+            cout << "Enter your choice: ";
             
-            cout << "enter your destination : ";
-            string city2;
-            cin >> city2;
-            cout << endl;
+            cin >> ans;
+            
+            if (ans == "add" || ans == "addE") {
+                cout << "Enter city names and distance (format: city1 city2 distance): ";
+                string city1, city2;
+                int distance;
+                cin >> city1 >> city2 >> distance;
+                graph.AddEdge(city1, city2, distance);
+                cout << "Connection added successfully!\n";
+            }
+            else if (ans == "dis") {
+                display.displayGraph();
+            }
+            else if (ans == "del") {
+                cout << "Enter city name to delete: ";
+                string city;
+                cin >> city;
+                graph.DeleteCity(city);
+                cout << "City deleted if it existed.\n";
+            }
+            else if(ans == "dks"){
+
+                cout << "enter your current loaction: ";
+                string city;
+                cin >> city;
 
 
-            graph.dijkstra(city, city2);
 
-        }
-        else if(ans =="TG"){
-            cout<<"Enter the city you want to traverse: ";
-            string city;cin>>city;
-            TG.BFS(city);
-        }
-        else if (ans == "delE") {
-            cout << "Enter city names to disconnect (format: city1 city2): ";
-            string city1, city2;
-            cin >> city1 >> city2;
-            graph.DeleteEdge(city1, city2);
-            cout << "Connection removed if it existed.\n";
-        }
-        else if (ans == "logout") {
-            userSystem.logout();
-            running = false;
-        }
-        else if (ans == "ex") {
-            userSystem.logout();
-            exit(0);
-        }
-        else {
-            cout << "Invalid option. Please try again.\n";
-        }
-        
-        destructChoice(ans);
+                cout << "enter your destination : ";
+                string city2;
+                cin >> city2;
+                cout << endl;
+
+
+                graph.dijkstra(city, city2);
+
+            }
+            else if(ans =="TG"){
+                cout<<"Enter the city you want to traverse: ";
+                string city;cin>>city;
+                TG.BFS(city);
+            }
+            else if (ans == "delE") {
+                cout << "Enter city names to disconnect (format: city1 city2): ";
+                string city1, city2;
+                cin >> city1 >> city2;
+                graph.DeleteEdge(city1, city2);
+                cout << "Connection removed if it existed.\n";
+            }
+            else if (ans == "logout") {
+                userSystem.logout();
+                running = false;
+            }
+            else if (ans == "ex") {
+                userSystem.logout();
+                exit(0);
+            }
+            else {
+                cout << "Invalid option. Please try again.\n";
+            }
+
+            destructChoice(ans);
+        }   
     }
 }
 
