@@ -1,28 +1,25 @@
-#include <string>
 #include <unordered_map>
+#include <vector>
+#include <string>
 #include <list>
-#include <utility>
-
 using namespace std;
-
-class GraphManager {
+class GraphController {
+    unordered_map<string,list<pair<string, int>>> mainMap;
 
 public:
-
-    void AddCity(const string& cityName);
-    void AddEdge(const string& city1, const string& city2, int distance);
-
-    void DeleteEdge(const string& city1, const string& city2);
-    void DeleteCity(const string& cityName);
-
-    void DisplayGraph() const;
-
-private:
-
-    unordered_map<string, list<pair<string, int>>> adjacencyList;
+    GraphController();
+    ~GraphController();
+    void addCity(string);
+    void saveTojson();
+    void loadfromjson();
+    void addEdge(string,string, int);
+    void deleteEdge(string,string);
+    void removeCity(string);
+    void display();
+    void findShortestPath(string,string);
+    void DFS(unordered_map<string,string> graph,
+             vector<string>path, 
+             vector<vector<string>>& paths,
+             string startcity);
+    void BFS(string);
 };
-
-
-
-
-

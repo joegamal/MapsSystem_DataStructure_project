@@ -54,11 +54,11 @@ void GraphTraverse::BFS(string StartCity){
 void GraphTraverse::DFS(unordered_map<string,string> graph,vector<string>path, vector<vector<string>>& paths,string startcity){
     path.push_back(startcity);
         
-        if (graph[startcity] == "") {
-            reverse(path.begin(), path.end());
-            paths.push_back(path);
-        } else {
-            DFS(graph, path, paths, graph[startcity]);
-        }
-        path.pop_back(); 
+    if (graph[startcity] == "") {
+        reverse(path.begin(), path.end());
+        paths.push_back(path);
+    } else {
+        DFS(graph, path, paths, graph[startcity]);
+    }
+    path.pop_back(); 
 }
