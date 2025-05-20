@@ -1,0 +1,14 @@
+{
+    "alex": [
+        {
+            "cost": 200,
+            "destination": "cairo"
+        }
+    ],
+    "cairo": [
+        {
+            "cost": 200,
+            "destination": "alex"
+        }
+    ]
+}
