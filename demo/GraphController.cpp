@@ -49,6 +49,32 @@ unordered_map<string, list<pair<string, int>>> deserializeMainMap(const string& 
 
 
 void loadFromJson(const string& filename, unordered_map<string,list<pair<string, int>>>& mainMap){
+    /*
+    ifstream inFile(filename);
+    if (!inFile.is_open()) {
+        cout << " File " << filename << " not found. Using new data.\n";
+        return;
+    }
+    json cityData;
+    try {
+        inFile >> cityData;
+        inFile.close();
+    }
+    catch (...) {
+        cout << " Error reading JSON data.\n";
+        return;
+    }
+    mainMap.clear();
+    for (auto& cityItem : cityData.items()) {
+        string city = cityItem.key();
+        for (auto& road : cityItem.value()) {
+            mainMap[city].push_back({ road["destination"], road["cost"] });
+        }
+    }
+    cout << " Data loaded from " << filename << " successfully!\n";
+
+    */
+
     mainMap.clear();
 
     mainMap = deserializeMainMap("Neg.json", mainMap);
@@ -72,7 +98,28 @@ json serializeMainMap(const unordered_map<string, list<pair<string, int>>>& main
 
 
 void saveToJson(const string& filename, const unordered_map<string,list<pair<string, int>>>& mainMap) {
-    
+    /*
+    json cityData;
+    for (const auto& cityItem : mainMap) {
+        string city = cityItem.first;
+        for (const auto& list : cityItem.second) {
+            if(list != NULL){
+                cityData[city].push_back({ {"destination", list.first}, {"cost", list.second} });
+            }else{
+                
+            }
+        }
+    }
+    ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        cout << " Error opening file " << filename << "!\n";
+        return;
+    }
+    outFile << cityData.dump(4);
+    outFile.close();
+    cout << " Data saved to " << filename << " successfully!\n";
+    */
+
     json result = serializeMainMap(mainMap);
 
     std::ofstream outFile("Neg.json");
@@ -94,7 +141,9 @@ GraphController::~GraphController(){
 
 
 void GraphController::addCity(string cname){
-    
+    //auto it = mainMap.find(cname);
+    //if (it == mainMap.end()) {
+    //}
     mainMap[cname] = list<pair<string, int>>();
     saveToJson("NegativeCities.json", getMap());    
 }

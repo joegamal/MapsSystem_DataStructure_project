@@ -1,0 +1,24 @@
+{
+    "a": [],
+    "alex": [],
+    "asu": [
+        {
+            "first": "alex",
+            "second": 220
+        },
+        {
+            "first": "cairo",
+            "second": 20
+        }
+    ],
+    "cairo": [
+        {
+            "first": "alex",
+            "second": 200
+        },
+        {
+            "first": "a",
+            "second": 2000
+        }
+    ]
+}
