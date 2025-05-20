@@ -5,19 +5,11 @@
             "destination": "cairo"
         },
         {
-            "cost": 200,
-            "destination": "cairo"
-        },
-        {
             "cost": 20000,
             "destination": "usa"
         }
     ],
     "cairo": [
-        {
-            "cost": 200,
-            "destination": "alex"
-        },
         {
             "cost": 200,
             "destination": "alex"

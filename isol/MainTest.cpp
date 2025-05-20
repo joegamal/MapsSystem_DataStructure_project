@@ -3,7 +3,7 @@
 #include "UserLogin.cpp"
 #include "DisplayGraph.cpp"
 #include "GraphTraverse.cpp"
-#include "GraphController.cpp"
+#include "../gamal/GraphController.cpp"
 
 using namespace std;
 
@@ -12,7 +12,6 @@ string destructChoice(string& str) {
     return str;
 }
 
-/*
 void showAuthMenu(UserLogin& userSystem) {
     while (true) {
         cout << "\n===== Welcome to Mini Wasalny =====\n";
@@ -59,10 +58,8 @@ void showAuthMenu(UserLogin& userSystem) {
         }
     }
 }
-*/
 
-
-void showMainMenu(GraphManager& graph,GraphController negGraph) {
+void showMainMenu(GraphManager& graph,GraphController negGraph, UserLogin& userSystem) {
     GraphDisplay display(graph);
     GraphTraverse TG(graph);
     bool running = true;
@@ -71,7 +68,7 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
 
         string ans;
         cout << "\n===== Mini Wasalny Main Menu =====\n";
-        //cout << "Logged in as: " << userSystem.getCurrentUser().firstName << endl;
+        cout << "Logged in as: " << userSystem.getCurrentUser().firstName << endl;
 
 
         //gamal's work start.
@@ -79,7 +76,7 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
         cin >> ans;
         if(ans == "y") {
             cout << "Options:\n";
-            cout << "add - Add city\n";
+            cout << "add - Add city connection\n";
             cout << "dis - Display graph\n";
             cout << "del - Delete city\n";
             cout << "addE - Add edge\n";
@@ -127,10 +124,10 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
                 cin>> end;
                 negGraph.findShortestPath(start, end);
             }else if (ans == "ex") {
-                //userSystem.logout();
+                userSystem.logout();
                 exit(0);
             }else if (ans == "logout") {
-                //userSystem.logout();
+                userSystem.logout();
                 running = false;
             }
             else {
@@ -194,7 +191,7 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
                 graph.dijkstra(city, city2);
 
             }
-            else if(ans == "astar") {
+              else if(ans == "astar") {
                 string start, end;
                 cout << "Enter your current location: ";
                 cin >> start;
@@ -216,11 +213,11 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
                 cout << "Connection removed if it existed.\n";
             }
             else if (ans == "logout") {
-                //userSystem.logout();
+                userSystem.logout();
                 running = false;
             }
             else if (ans == "ex") {
-                //userSystem.logout();
+                userSystem.logout();
                 exit(0);
             }
             else {
@@ -238,11 +235,11 @@ int main() {
     GraphController gc;
     
     while (true) {
-        //if (!userSystem.isLoggedIn()) {
-        //    showAuthMenu(userSystem);
-        //} else {
-        //}
-        showMainMenu(graph, gc);
+        if (!userSystem.isLoggedIn()) {
+            showAuthMenu(userSystem);
+        } else {
+            showMainMenu(graph, gc, userSystem);
+        }
     }
     
     return 0;

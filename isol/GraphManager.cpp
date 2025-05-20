@@ -184,8 +184,6 @@ void GraphManager::dijkstra(string start,string end){
     PrintSolution(start,end);
 }
 
-
-
 void GraphManager::aStar(string start, string end) {
     // Simple heuristic: zero for now (acts like Dijkstra)
     auto heuristic = [](const string& a, const string& b) {
