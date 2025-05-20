@@ -225,37 +225,3 @@ void GraphManager::aStar(string start, string end) {
   PrintSolution(start, end);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/** 
-void GraphManager::DisplayGraph() const {
-
-    // Check if the graph is empty
-    if (adjacencyList.empty()) {
-        cout << "The graph is empty." << endl;
-        return;
-    }
-
-    // Iterate through each city in the adjacency list
-    for (const auto& cityPair : adjacencyList) {
-        const string& city = cityPair.first;
-        const list<pair<string, int>>& neighbors = cityPair.second;
-
-    // Print the current city and its neighbors
-    cout << city << " -> ";
-    for (const auto& neighbor : neighbors) {
-        cout << "(" << neighbor.first << ", " << neighbor.second << " km) ";
-    }
-    cout << endl;
-    }
-}
-    */

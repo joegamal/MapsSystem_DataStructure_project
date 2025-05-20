@@ -12,55 +12,6 @@ string destructChoice(string& str) {
     return str;
 }
 
-/*
-void showAuthMenu(UserLogin& userSystem) {
-    while (true) {
-        cout << "\n===== Welcome to Mini Wasalny =====\n";
-        cout << "1. Login\n2. Sign Up\n3. Exit\n";
-        cout << "Choose an option: ";
-        
-        string choice;
-        cin >> choice;
-        
-        if (choice == "1") {
-            string phone, password;
-            cout << "Phone: ";
-            cin >> phone;
-            cout << "Password: ";
-            cin >> password;
-            if (userSystem.login(phone, password)) {
-                return;
-            }
-        } 
-        else if (choice == "2") {
-            string firstName, lastName, phone, password;
-            cout << "First Name: ";
-            cin >> firstName;
-            cout << "Last Name: ";
-            cin >> lastName;
-            cout << "Phone: ";
-            cin >> phone;
-            cout << "Password: ";
-            cin >> password;
-        
-            try {
-                userSystem.signUp(firstName, lastName, phone, password);
-                cout << "Registration successful! Please login.\n";
-            } 
-            catch (const exception& e) {
-                cout << "Error: " << e.what() << "\n";
-            }
-        }
-        else if (choice == "3") {
-            exit(0);
-        }
-        else {
-            cout << "Invalid choice. Try again.\n";
-        }
-    }
-}
-*/
-
 
 void showMainMenu(GraphManager& graph,GraphController negGraph) {
     GraphDisplay display(graph);
@@ -238,10 +189,6 @@ int main() {
     GraphController gc;
     
     while (true) {
-        //if (!userSystem.isLoggedIn()) {
-        //    showAuthMenu(userSystem);
-        //} else {
-        //}
         showMainMenu(graph, gc);
     }
     
