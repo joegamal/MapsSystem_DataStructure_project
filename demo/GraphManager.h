@@ -25,6 +25,7 @@ public:
     void saveToJson(const string& filename) const;
     void dijkstra(string start,string end);
     void aStar(string start, string end);
+    void floyd(string &start, string &end);
     const unordered_map<string, list<pair<string, int>>>& getAdjacencyList() const {
         return adjacencyList;
     }    

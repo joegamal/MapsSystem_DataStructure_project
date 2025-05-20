@@ -225,3 +225,53 @@ void GraphManager::aStar(string start, string end) {
   PrintSolution(start, end);
 }
 
+// youssefRagheb Work start here
+void GraphManager::floyd(string& startCity, string& endCity) {
+
+    const unordered_map<string, list<pair<string, int>>> distList = getAdjacencyList();
+    unordered_map<string, unordered_map<string, int>> distMatrixMap;
+    vector<string> cities ;
+    // hena bgm3 el kol cities elly fe el adjacency list as key
+    for (auto it : distList) {
+        cities.push_back(it.first);
+    }
+
+    // hnInitialize el adjacency matrix
+    for (auto it : cities) {
+        for (auto it2 : cities) {
+            distMatrixMap[it][it2] = (it == it2) ? 0 : INT_MAX;
+        }
+    }
+
+    // han5le el adjacency list tb2a adjacency map b3d ma handlnaha 
+    for(auto it1 : distList) {
+        string city = it1.first;
+        list<pair<string, int>> neighborsList = it1.second;
+        for(auto it2 : neighborsList) {
+            string neighbor = it2.first;
+            int distance = it2.second;
+            distMatrixMap[city][neighbor] = distance;
+        }
+    }  
+
+    // Apply Floyd-Warshall algorithm
+    for (auto k : cities) {
+        for (auto i : cities) {
+            for (auto j : cities) {
+                if (distMatrixMap[i][k] != INT_MAX && distMatrixMap[k][j] != INT_MAX) {
+                    if (distMatrixMap[i][j] > distMatrixMap[i][k] + distMatrixMap[k][j]) {
+                        distMatrixMap[i][j] = distMatrixMap[i][k] + distMatrixMap[k][j];
+                    }
+                }
+            }
+        }
+    }
+
+    if (distMatrixMap[startCity][endCity] == INT_MAX) {
+        cout << "there is no path between " << startCity << " and " << endCity << endl;
+    } else {
+        cout << "the shortest distance between " << startCity << " to " << endCity << " is: " 
+             << distMatrixMap[startCity][endCity] << endl;
+    }
+}
+

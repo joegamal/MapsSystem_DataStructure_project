@@ -3,11 +3,55 @@
         {
             "cost": 200,
             "destination": "cairo"
+        },
+        {
+            "cost": 20000,
+            "destination": "paris"
+        },
+        {
+            "cost": 40200,
+            "destination": "usa"
         }
     ],
     "cairo": [
         {
             "cost": 200,
+            "destination": "alex"
+        },
+        {
+            "cost": 20200,
+            "destination": "paris"
+        },
+        {
+            "cost": 30000,
+            "destination": "usa"
+        }
+    ],
+    "usa": [
+        {
+            "cost": 40000,
+            "destination": "paris"
+        },
+        {
+            "cost": 30000,
+            "destination": "cairo"
+        },
+        {
+            "cost": 40200,
+            "destination": "alex"
+        }
+    ],
+    "paris": [
+        {
+            "cost": 40000,
+            "destination": "usa"
+        },
+        {
+            "cost": 20200,
+            "destination": "cairo"
+        },
+        {
+            "cost": 20000,
             "destination": "alex"
         }
     ]

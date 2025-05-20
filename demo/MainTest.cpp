@@ -22,8 +22,6 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
 
         string ans;
         cout << "\n===== Mini Wasalny Main Menu =====\n";
-        //cout << "Logged in as: " << userSystem.getCurrentUser().firstName << endl;
-
 
         //gamal's work start.
         cout << "Your MAP has a negative weights or not [y/n]\n";
@@ -103,6 +101,7 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
             cout << "delE - Delete edge\n";
             cout << "dks - for dijkstra short path calculation\n";
             cout << "astar - for A* short path calculation\n";
+            cout << "Fld - apply floid to find the shortest path between any cities\n";
             cout << "TG - Traverse current graph\n";
             cout << "logout - Log out\n";
             cout << "ex - Exit\n";
@@ -152,6 +151,20 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
                 cout << "Enter your destination: ";
                 cin >> end;
                 graph.aStar(start, end);
+
+            }
+            else if(ans == "Fld"){
+                char ans;
+                string start , end;
+                do {
+                    cout<<"Enter any begining city: ";
+                    cin >> start;
+                    cout<<"Enter any destination city: ";
+                    cin>> end;
+                    graph.floyd(start, end);
+                    cout << "another try? [y/n]: ";
+                    cin >> ans;
+                }while(ans == 'y');
 
             }
             else if(ans =="TG"){
