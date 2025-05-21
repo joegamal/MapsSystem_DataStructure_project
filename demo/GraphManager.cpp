@@ -275,3 +275,76 @@ void GraphManager::floyd(string& startCity, string& endCity) {
     }
 }
 
+
+void GraphManager::TPshortestPath(const string& src) {
+    if (adjacencyList.find(src) == adjacencyList.end()) {
+        cout << "Error: City " << src << " not found in JSON.\n";
+        return;
+    }
+
+    stack<string> Stack;
+    unordered_map<string, bool> visited, recStack;
+    unordered_map<string, int> dist;
+
+    // Topological Sorting + Cycle Detection
+    for (auto& city : adjacencyList) {
+        if (!visited[city.first]) {
+            if (topologicalSortUtil(city.first, visited, Stack, recStack)) {
+                cout << "Error: The graph contains a cycle! Shortest path computation is not possible.\n";
+                return;
+            }
+        }
+    }
+
+    // Initialize distances
+    for (auto& city : adjacencyList)
+        dist[city.first] = INT_MAX;
+    dist[src] = 0;
+
+    // Process cities in topological order
+    while (!Stack.empty()) {
+        string u = Stack.top();
+        Stack.pop();
+
+        if (dist[u] != INT_MAX) {
+            for (auto& neighbor : adjacencyList[u]) {
+                string v = neighbor.first;
+                int weight = neighbor.second;
+                if (dist[v] > dist[u] + weight)
+                    dist[v] = dist[u] + weight;
+            }
+        }
+    }
+
+    // Print shortest distances
+    cout << "Shortest distances from " << src << ":\n";
+    for (const auto& city : dist)
+        cout << city.first << " -> " << (city.second == INT_MAX ? "INF" : to_string(city.second)) << endl;
+}
+
+bool GraphManager::isCyclic() {
+    unordered_map<string, bool> visited, recStack;
+    stack<string> Stack;
+    for (auto& city : adjacencyList) {
+        if (!visited[city.first] && topologicalSortUtil(city.first, visited, Stack, recStack))
+            return true;
+    }
+    return false;
+}
+
+
+bool GraphManager::topologicalSortUtil(const string& city, unordered_map<string, bool>& visited, stack<string>& Stack, unordered_map<string, bool>& recStack) {
+    visited[city] = true;
+    recStack[city] = true;
+
+    for (auto& neighbor : adjacencyList[city]) {
+        if (!visited[neighbor.first] && topologicalSortUtil(neighbor.first, visited, Stack, recStack))
+            return true;
+        else if (recStack[neighbor.first])
+            return true; // Cycle detected
+    }
+
+    recStack[city] = false;
+    Stack.push(city);
+    return false;
+}

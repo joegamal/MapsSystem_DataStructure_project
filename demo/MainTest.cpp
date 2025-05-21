@@ -34,6 +34,8 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
             cout << "addE - Add edge\n";
             cout << "delE - Delete edge\n";
             cout << "blman - apply bellman to find shortest path\n";
+            cout << "dfs - to apply dfs\n";
+            cout << "bfs to apply bfs\n";
             cout << "logout - Log out\n";
             cout << "ex - Exit\n";
             cout << "Enter your choice: ";
@@ -68,7 +70,19 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
                 cin >> city1 >> city2;
                 negGraph.deleteEdge(city1, city2);
                 cout << "Con2nection removed if it existed.\n";
-            }else if(ans == "blman"){
+            }else if(ans == "bfs"){
+                string sel;
+                cout<< "select your current city: ";
+                cin>>sel;
+                TG.BFS(sel);
+            }
+            else if(ans == "dfs"){
+                string sel;
+                cout<< "select your current city: ";
+                cin>>sel;
+                TG.DFS(sel);
+            }
+            else if(ans == "blman"){
                 string start, end;
                 cout<<"enter your current location first: ";
                 cin >> start;
@@ -102,7 +116,10 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
             cout << "dks - for dijkstra short path calculation\n";
             cout << "astar - for A* short path calculation\n";
             cout << "Fld - apply floid to find the shortest path between any cities\n";
-            cout << "TG - Traverse current graph\n";
+            cout << "TP - for topological short path calculation\n";
+            cout << "dfs - to apply dfs\n";
+            cout << "bfs to apply bfs\n";
+            //cout << "TG - Traverse current graph\n";
             cout << "logout - Log out\n";
             cout << "ex - Exit\n";
             cout << "Enter your choice: ";
@@ -126,6 +143,18 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
                 cin >> city;
                 graph.DeleteCity(city);
                 cout << "City deleted if it existed.\n";
+            }
+            else if(ans == "bfs"){
+                string sel;
+                cout<< "select your current city: ";
+                cin>>sel;
+                TG.BFS(sel);
+            }
+            else if(ans == "dfs"){
+                string sel;
+                cout<< "select your current city: ";
+                cin>>sel;
+                TG.DFS(sel);
             }
             else if(ans == "dks"){
 
@@ -167,11 +196,29 @@ void showMainMenu(GraphManager& graph,GraphController negGraph) {
                 }while(ans == 'y');
 
             }
-            else if(ans =="TG"){
-                cout<<"Enter the city you want to traverse: ";
-                string city;cin>>city;
-                TG.BFS(city);
+            else if (ans == "TP") {
+
+                if (graph.isCyclic()) {
+                    cout << "Error: The graph contains a cycle! Shortest path computation is not possible.\n";
+                }
+                else {
+                    string source;
+                    cout << "Cities : [ ";
+                    for (const auto& cityItem : graph.getAdjacencyList()) {
+                      cout << cityItem.first << " , ";
+                    }
+                    cout << "]" << endl;
+                    cout << "Enter the city that you want to be the source from the list : ";
+                    cin >> source;
+
+                    graph.TPshortestPath(source);
+                }
             }
+            //else if(ans =="TG"){
+            //    cout<<"Enter the city you want to traverse: ";
+            //    string city;cin>>city;
+            //    TG.BFS(city);
+            //}
             else if (ans == "delE") {
                 cout << "Enter city names to disconnect (format: city1 city2): ";
                 string city1, city2;

@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <list>
 #include <utility>
+#include <stack>
 #ifndef GRAPHMANAGER_H
 #define GRAPHMANAGER_H
 using namespace std;
@@ -26,6 +27,9 @@ public:
     void dijkstra(string start,string end);
     void aStar(string start, string end);
     void floyd(string &start, string &end);
+    bool topologicalSortUtil(const string& city, unordered_map<string, bool>& visited, stack<string>& Stack, unordered_map<string, bool>& recStack);
+    bool isCyclic();
+    void TPshortestPath(const string& src);
     const unordered_map<string, list<pair<string, int>>>& getAdjacencyList() const {
         return adjacencyList;
     }    
