@@ -102,7 +102,7 @@ void GraphTraverse::BFS(string StartCity) {
 
 
 
-
+/*
 
 
 void GraphTraverse::DFS(string startCity) {
@@ -128,6 +128,47 @@ void GraphTraverse::DFS(string startCity) {
                     if (!visited[pairs.first]) {
                         visited[pairs.first]=true;
                         stk.push(pairs.first);
+                    }
+                }
+            }
+        }
+    }
+
+    // Print traversal order
+    for (size_t i = 0; i < traversalOrder.size(); ++i) {
+        cout << traversalOrder[i];
+        if (i != traversalOrder.size() - 1)
+            cout << " -> ";
+    }
+    cout << endl;
+}
+*/
+
+
+void GraphTraverse::DFS(string startCity) {
+    unordered_map<string, bool> visited;
+    stack<string> stk;
+    vector<string> traversalOrder;
+    const auto& graph=graphManager.getAdjacencyList();
+
+    stk.push(startCity);
+
+    while (!stk.empty()) {
+        string city = stk.top();
+        stk.pop();
+
+        if (!visited[city]) {
+            visited[city] = true;
+            traversalOrder.push_back(city);
+
+            
+            if (graph.find(city) != graph.end()) {
+                const auto& neighbors = graph.at(city); 
+                for (auto pairs:neighbors) {
+                    if (!visited[pairs.first]) {
+                        visited[pairs.first]=true;
+                        stk.push(pairs.first);
+                        traversalOrder.push_back(pairs.first);
                     }
                 }
             }
